@@ -25,7 +25,7 @@ Chat multiple con un agente LLM (OpenRouter). Backend Spring Boot 4 + PostgreSQL
 1. Database: `createdb -U postgres u5d8`
 2. Segreti (variabili d'ambiente oppure `BE/env.properties`, non versionato):
    - `DB_PASSWORD` (e `DB_USERNAME`, default `postgres`)
-   - `OPENROUTER_API_KEY` — chiave OpenRouter (modello free configurato in `application.properties`)
+   - `OPENROUTER_API_KEY` — chiave OpenRouter (`sk-or-v1-...`); i modelli free usati, in ordine di fallback, sono in `app.llm.modelli`
 3. Backend: `cd BE && mvn spring-boot:run` (porta 3001)
 4. Frontend: `cd FE && npm install && npm run dev` → http://localhost:5173
 

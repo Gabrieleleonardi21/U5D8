@@ -27,11 +27,12 @@ public class ClientLlm {
 	private static final long ATTESA_MS = 1000;
 
 	private final RestClient restClient;
-	private final String modello;
+	// Elenco in ordine di preferenza (proprieta' separata da virgole): il primo e' il modello principale
+	private final List<String> modelli;
 
-	public ClientLlm(RestClient llmRestClient, @Value("${app.llm.model}") String modello) {
+	public ClientLlm(RestClient llmRestClient, @Value("${app.llm.modelli}") List<String> modelli) {
 		this.restClient = llmRestClient;
-		this.modello = modello;
+		this.modelli = modelli;
 	}
 
 	/**
@@ -39,7 +40,7 @@ public class ClientLlm {
 	 * Nessuna eccezione esce da qui: cosa salvare in caso di errore lo decide chi chiama.
 	 */
 	public Optional<RispostaLlm> completa(List<MessaggioLlm> messaggi) {
-		RichiestaLlm richiesta = new RichiestaLlm(modello, messaggi);
+		RichiestaLlm richiesta = new RichiestaLlm(modelli.get(0), modelli, messaggi);
 		for (int tentativo = 1; tentativo <= TENTATIVI; tentativo++) {
 			try {
 				return Optional.of(chiama(richiesta));

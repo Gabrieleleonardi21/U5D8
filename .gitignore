@@ -1,0 +1,7 @@
+.DS_Store
+BE/env.properties
+BE/target/
+FE/node_modules/
+FE/dist/
+.idea/
+*.iml

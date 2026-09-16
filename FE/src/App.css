@@ -1,0 +1,41 @@
+/* Stile minimale: system-ui, due colonne, bolle dei messaggi */
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; background: #f3f4f6; color: #222; }
+button { font: inherit; cursor: pointer; border: 0; border-radius: 6px; padding: 0.5rem 1rem; background: #10a37f; color: #fff; }
+button:disabled { opacity: 0.6; cursor: default; }
+button.secondario { background: #ddd; color: #222; }
+input { font: inherit; padding: 0.5rem; border: 1px solid #bbb; border-radius: 6px; }
+input:disabled { background: #eee; }
+.avviso { padding: 0.5rem; border-radius: 6px; margin: 0.5rem; }
+.avviso.errore { background: #fde2e2; color: #900; }
+.nota { text-align: center; color: #666; margin-top: 2rem; }
+
+/* Sidebar */
+.app { display: flex; height: 100vh; }
+.sidebar { width: 280px; background: #fff; border-right: 1px solid #ccc; display: flex; flex-direction: column; }
+.sidebar header { padding: 0.75rem 1rem; background: #202123; color: #fff; }
+.nuova-chat { display: flex; gap: 0.5rem; padding: 0.75rem; border-bottom: 1px solid #eee; }
+.nuova-chat input { flex: 1; min-width: 0; }
+.sidebar ul { list-style: none; margin: 0; padding: 0; overflow-y: auto; flex: 1; }
+.sidebar li { display: flex; align-items: stretch; border-bottom: 1px solid #eee; }
+.contatto { flex: 1; text-align: left; background: none; color: #222; border-radius: 0; padding: 0.6rem 1rem; display: flex; flex-direction: column; gap: 0.15rem; }
+.contatto small { color: #777; font-size: 0.75rem; }
+.contatto:hover { background: #f5f5f5; }
+.contatto.attivo { background: #e6f6f1; font-weight: bold; }
+.elimina { background: none; color: #999; border-radius: 0; padding: 0 0.75rem; font-size: 1.2rem; }
+.elimina:hover { color: #c00; background: #fbeaea; }
+
+/* Conversazione */
+.colonna { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.intestazione { padding: 0.75rem 1rem; background: #fff; border-bottom: 1px solid #ccc; font-weight: bold; }
+.messaggi { list-style: none; margin: 0; padding: 1rem; flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 0.5rem; }
+.bolla { align-self: flex-start; max-width: 75%; background: #fff; padding: 0.5rem 0.8rem; border-radius: 10px; display: flex; flex-direction: column; box-shadow: 0 1px 1px rgba(0,0,0,0.1); }
+/* pre-wrap: conserva gli a capo della risposta dell'LLM (testo puro, nessun HTML) */
+.bolla span { white-space: pre-wrap; overflow-wrap: anywhere; }
+.bolla.utente { align-self: flex-end; background: #d9f5ea; }
+.bolla.errore { background: #fde2e2; color: #900; }
+.bolla.attesa { color: #777; font-style: italic; }
+.bolla small { align-self: flex-end; color: #777; font-size: 0.7rem; margin-top: 0.2rem; }
+.precedenti { align-self: center; }
+.invio { display: flex; gap: 0.5rem; padding: 0.75rem; background: #fff; border-top: 1px solid #ccc; }
+.invio input { flex: 1; }

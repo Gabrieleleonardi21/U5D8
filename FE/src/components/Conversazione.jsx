@@ -94,7 +94,12 @@ function Conversazione({ chat, onRisposta }) {
 
   let bollaAttesa = null
   if (inAttesa) {
-    bollaAttesa = <li className="bolla attesa">Epi sta scrivendo…</li>
+    bollaAttesa = (
+      <li className="bolla attesa" aria-live="polite">
+        <span className="puntini" aria-hidden="true"><i /><i /><i /></span>
+        <span className="visivamente-nascosto">Epi sta scrivendo</span>
+      </li>
+    )
   }
 
   return (
@@ -104,7 +109,7 @@ function Conversazione({ chat, onRisposta }) {
         {bottonePrecedenti}
         {messaggi.map((m) => (
           <li key={m.id} className={classeMessaggio(m)}>
-            <span>{m.testo}</span>
+            <p>{m.testo}</p>
             <small>{ora(m.createdAt)}</small>
           </li>
         ))}
@@ -113,7 +118,7 @@ function Conversazione({ chat, onRisposta }) {
       </ul>
       <Avviso testo={errore} />
       <form className="invio" onSubmit={invia}>
-        <input value={testo} onChange={(e) => setTesto(e.target.value)} placeholder="Scrivi un messaggio" disabled={inAttesa} autoFocus />
+        <input value={testo} onChange={(e) => setTesto(e.target.value)} placeholder="Scrivi a Epi" aria-label="Messaggio per Epi" disabled={inAttesa} autoFocus />
         <button type="submit" disabled={inAttesa}>Invia</button>
       </form>
     </>

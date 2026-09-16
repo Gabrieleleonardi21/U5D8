@@ -4,7 +4,13 @@
  */
 export async function api(percorso, opzioni = {}) {
   const headers = { 'Content-Type': 'application/json', ...opzioni.headers }
-  const risposta = await fetch(percorso, { ...opzioni, headers })
+  let risposta
+  try {
+    risposta = await fetch(percorso, { ...opzioni, headers })
+  } catch {
+    // fetch fallisce solo per problemi di rete: il backend e' spento o irraggiungibile
+    throw new Error('Impossibile contattare il server: controlla che il backend sia avviato e riprova')
+  }
   if (!risposta.ok) {
     throw new Error(await leggiMessaggioErrore(risposta))
   }

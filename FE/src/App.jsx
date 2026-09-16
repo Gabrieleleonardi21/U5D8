@@ -49,7 +49,12 @@ function App() {
   }
 
   // key = id: cambiando chat il componente viene ricreato con stato pulito (messaggi, pagina, input)
-  let colonnaDestra = <p className="nota">Crea una chat o scegline una per iniziare</p>
+  let colonnaDestra = (
+    <div className="benvenuto">
+      <h1>Ciao, sono Epi.</h1>
+      <p>Dai un nome a una chat qui a sinistra e scrivimi: rispondo in italiano, in breve, e ricordo il filo della conversazione.</p>
+    </div>
+  )
   if (chatAperta) {
     colonnaDestra = <Conversazione key={chatAperta.id} chat={chatAperta} onRisposta={aggiornaLista} />
   }
